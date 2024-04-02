@@ -5,7 +5,7 @@ services:
       dockerfile: ./backend.dockerfile
     ports:
       - 6886:6886
-    network_mode: host
+    hostname: backend
   frontend:
     build:
       context: ./Frontend
@@ -14,7 +14,7 @@ services:
       - 6885:6885
     depends_on:
       - backend
-    network_mode: host
+    hostname: frontend
   nginx:
     image: nginx:latest
     ports:
@@ -24,5 +24,4 @@ services:
     depends_on:
       - backend
       - frontend
-    network_mode: host
     
