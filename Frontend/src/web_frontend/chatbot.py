@@ -16,7 +16,7 @@ def make_app():
     settings = {
         "cookie_secret": "__TODO:_GENERATE_YOUR_OWN_RANDOM_VALUE_HERE__",
         "login_url": "/login",
-        "redirect_base_uri": f"http://54.169.203.68:6885",
+        "redirect_base_uri": f"http://frontend:6885",
         "xsrf_cookies": True,
         "debug": True
     }
