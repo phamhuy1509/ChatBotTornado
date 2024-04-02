@@ -28,6 +28,6 @@ async def main(sockets):
 if __name__ == "__main__":
     port = 6886
     print(f"Listening backend on port {port}")
-    sockets = tornado.netutil.bind_sockets(port, address="0.0.0.0")
+    sockets = tornado.netutil.bind_sockets(port)
     tornado.process.fork_processes(0)
     asyncio.run(main(sockets))
