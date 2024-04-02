@@ -13,12 +13,12 @@ from chat_handler import ChatHandler
 def make_app():
     settings = {
         "cookie_secret": "__TODO:_GENERATE_YOUR_OWN_RANDOM_VALUE_HERE__",
-        "redirect_base_uri": f"http://127.0.0.1:6886",
+        "redirect_base_uri": f"http://127.0.0.1:6886/api",
         "debug": True
     }
     return tornado.web.Application([(tornado.routing.HostMatches("127.0.0.1"), 
-                                     [(r'/login', LoginHandler), 
-                                      (r'/chat', ChatHandler)])], **settings)
+                                     [(r'/api/login', LoginHandler), 
+                                      (r'/api/chat', ChatHandler)])], **settings)
 
 async def main(sockets):
     app = make_app()
