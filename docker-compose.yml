@@ -6,6 +6,7 @@ services:
     ports:
       - 6886:6886
     network_mode: host
+    hostname: 54.169.203.68
   frontend:
     build:
       context: ./Frontend
@@ -15,3 +16,4 @@ services:
     depends_on:
       - backend
     network_mode: host
+    hostname: 54.169.203.68
