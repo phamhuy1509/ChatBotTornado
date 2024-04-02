@@ -13,10 +13,10 @@ from chat_handler import ChatHandler
 def make_app():
     settings = {
         "cookie_secret": "__TODO:_GENERATE_YOUR_OWN_RANDOM_VALUE_HERE__",
-        "redirect_base_uri": f"http://localhost:6886",
+        "redirect_base_uri": f"http://172.31.24.167:6886",
         "debug": True
     }
-    return tornado.web.Application([(tornado.routing.HostMatches("localhost"), 
+    return tornado.web.Application([(tornado.routing.HostMatches("172.31.24.167"), 
                                      [(r'/login', LoginHandler), 
                                       (r'/chat', ChatHandler)])], **settings)
 

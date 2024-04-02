@@ -9,7 +9,7 @@ class ChatHandler(tornado.websocket.WebSocketHandler):
         ChatHandler.clients.add(self)
 
     async def on_message(self, message):
-        request = HTTPRequest(url="http://localhost:6886/chat",
+        request = HTTPRequest(url="http://172.31.24.167:6886/chat",
                               method="POST",
                               headers={"Content-Type": "application/json"},
                               body=json.dumps({"message": message}))
