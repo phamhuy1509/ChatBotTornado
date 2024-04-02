@@ -20,11 +20,10 @@ def make_app():
         "xsrf_cookies": True,
         "debug": True
     }
-    return tornado.web.Application([(tornado.routing.HostMatches("127.0.0.1"), 
-                                     [(r'/login', LoginHandler), 
-                                      (r'/chatform', ChatForm), 
-                                      (r'/chat', ChatHandler), 
-                                      (r'/logout', LogoutHandler)])], **settings)
+    return tornado.web.Application([(r'/login', LoginHandler), 
+                                    (r'/chatform', ChatForm), 
+                                    (r'/chat', ChatHandler), 
+                                    (r'/logout', LogoutHandler)], **settings)
 
 async def main(sockets):
     app = make_app()

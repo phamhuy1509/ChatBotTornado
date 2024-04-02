@@ -16,9 +16,8 @@ def make_app():
         "redirect_base_uri": f"http://127.0.0.1:6886/api",
         "debug": True
     }
-    return tornado.web.Application([(tornado.routing.HostMatches("127.0.0.1"), 
-                                     [(r'/api/login', LoginHandler), 
-                                      (r'/api/chat', ChatHandler)])], **settings)
+    return tornado.web.Application([(r'/api/login', LoginHandler), 
+                                    (r'/api/chat', ChatHandler)], **settings)
 
 async def main(sockets):
     app = make_app()
