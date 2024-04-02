@@ -13,7 +13,7 @@ from chat_handler import ChatHandler
 def make_app():
     settings = {
         "cookie_secret": "__TODO:_GENERATE_YOUR_OWN_RANDOM_VALUE_HERE__",
-        "redirect_base_uri": f"http://localhost:6886/api",
+        "redirect_base_uri": f"http://backend:6886/api",
         "debug": True
     }
     return tornado.web.Application([(r'/api/login', LoginHandler), 
@@ -28,6 +28,6 @@ async def main(sockets):
 if __name__ == "__main__":
     port = 6886
     print(f"Listening backend on port {port}")
-    sockets = tornado.netutil.bind_sockets(port)
+    sockets = tornado.netutil.bind_sockets(port, address="0.0.0.0")
     tornado.process.fork_processes(0)
     asyncio.run(main(sockets))
