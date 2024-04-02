@@ -16,7 +16,7 @@ class LoginHandler(BaseHandler):
         if username=="" or password=="":
             self.write("Username or password is empty")
         else:
-            request = HTTPRequest(url="http://54.169.203.68:6886/login", 
+            request = HTTPRequest(url="http://127.0.0.1:6886/login", 
                                   method="POST", 
                                   headers={"Content-Type": "application/json",
                                            "X-Xsrftoken": self.get_argument("_xsrf")},

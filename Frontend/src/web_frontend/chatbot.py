@@ -16,11 +16,11 @@ def make_app():
     settings = {
         "cookie_secret": "__TODO:_GENERATE_YOUR_OWN_RANDOM_VALUE_HERE__",
         "login_url": "/login",
-        "redirect_base_uri": f"http://54.169.203.68:6885",
+        "redirect_base_uri": f"http://127.0.0.1:6885",
         "xsrf_cookies": True,
         "debug": True
     }
-    return tornado.web.Application([(tornado.routing.HostMatches("54.169.203.68"), 
+    return tornado.web.Application([(tornado.routing.HostMatches("127.0.0.1"), 
                                      [(r'/login', LoginHandler), 
                                       (r'/chatform', ChatForm), 
                                       (r'/chat', ChatHandler), 
@@ -35,6 +35,6 @@ async def main(sockets):
 if __name__ == "__main__":
     port = 6885
     print(f"Listening frontend on port {port}")
-    sockets = tornado.netutil.bind_sockets(port)
+    sockets = tornado.netutil.bind_sockets(port, address="0.0.0.0")
     tornado.process.fork_processes(0)
     asyncio.run(main(sockets))
