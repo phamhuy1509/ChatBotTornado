@@ -1,0 +1,10 @@
+tornado
+websockets
+numpy
+pandas
+scikit-learn
+asyncio
+uvicorn
+regex
+requests
+tqdm

@@ -1,0 +1,17 @@
+services:
+  backend:
+    build:
+      context: ./Backend
+      dockerfile: ./backend.dockerfile
+    ports:
+      - 6886:6886
+    network_mode: host
+  frontend:
+    build:
+      context: ./Frontend
+      dockerfile: ./frontend.dockerfile
+    ports:
+      - 6885:6885
+    depends_on:
+      - backend
+    network_mode: host
