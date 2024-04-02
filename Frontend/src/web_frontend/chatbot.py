@@ -16,11 +16,11 @@ def make_app():
     settings = {
         "cookie_secret": "__TODO:_GENERATE_YOUR_OWN_RANDOM_VALUE_HERE__",
         "login_url": "/login",
-        "redirect_base_uri": f"http://172.31.24.167:6885",
+        "redirect_base_uri": f"http://54.169.203.68:6885",
         "xsrf_cookies": True,
         "debug": True
     }
-    return tornado.web.Application([(tornado.routing.HostMatches("172.31.24.167"), 
+    return tornado.web.Application([(tornado.routing.HostMatches("54.169.203.68"), 
                                      [(r'/login', LoginHandler), 
                                       (r'/chatform', ChatForm), 
                                       (r'/chat', ChatHandler), 
