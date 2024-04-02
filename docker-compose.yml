@@ -33,6 +33,6 @@ services:
         ipv4_address: 172.38.0.4
 networks:
   chatbot_tornado:
-    external:
-      name: chatbot_tornado
+    external: true
+    name: chatbot_tornado
     
