@@ -16,7 +16,7 @@ class LoginHandler(BaseHandler):
         if username=="" or password=="":
             self.write("Username or password is empty")
         else:
-            request = HTTPRequest(url="http://backend:6886/api/login", 
+            request = HTTPRequest(url="http://172.38.0.2:6886/api/login", 
                                   method="POST", 
                                   headers={"Content-Type": "application/json",
                                            "X-Xsrftoken": self.get_argument("_xsrf")},

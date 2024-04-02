@@ -86,7 +86,7 @@
         </div>
     </div>
     <script>
-        var socket = new WebSocket("ws://frontend:6885/chat");
+        var socket = new WebSocket("ws://172.38.0.3:6885/chat");
         document.getElementById("message-form").addEventListener("submit", function(event) {
             event.preventDefault();
             var messageInput = document.getElementById("message-input");
