@@ -93,8 +93,14 @@
             var message = messageInput.value;
             displayLoading(true);
             displayUserMessage(message);
-            socket.send(message);
-            messageInput.value = "";
+            if (socket.readyState === socket.OPEN){
+                socket.send(message);
+                messageInput.value = "";
+            }
+            else {
+                window.alert("You have been inactive for a long time !")
+                displayLoading(false);
+            }
         });
 
         socket.onmessage = function(event) {
