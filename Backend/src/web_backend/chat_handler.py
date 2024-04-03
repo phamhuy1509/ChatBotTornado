@@ -1,4 +1,5 @@
 import json
+import time
 import random
 from base_handler import BaseHandler
 
@@ -15,4 +16,5 @@ class ChatHandler(BaseHandler):
         request_data = json.loads(self.request.body)
         message = request_data['message']
         bot_response = generate_bot_response(message)
+        time.sleep(2)
         self.write(json.dumps({"bot_response": bot_response}))
