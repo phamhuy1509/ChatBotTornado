@@ -8,7 +8,8 @@ def generate_bot_response(message):
         "Chào bạn, tôi có thể giúp gì được cho bạn",
         "Rất vui khi được gặp bạn",
         "for i in range(1, 101):\n\tif i % 2 == 0 and (i % 3 != 0 or i % 5 != 0):\n\t\tprint(i)",
-        "def square(n):\n\treturn n ** 2\nfor i in range(10):\n\tprint(i, square(i))"
+        "def square(n):\n\treturn n ** 2\nfor i in range(10):\n\tprint(i, square(i))",
+        "Dưới đây là một đoạn code python: <<python>> def square(n):\n\treturn n ** 2\nfor i in range(10):\n\tprint(i, square(i)) <</python>>"
     ]
     return random.choice(responses)
 class ChatHandler(BaseHandler):
