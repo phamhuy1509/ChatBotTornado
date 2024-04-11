@@ -33,6 +33,19 @@ services:
     networks:
       chatbot_tornado:
         ipv4_address: 172.38.0.4
+  text_generation:
+    image: ghcr.io/huggingface/text-generation-inference:1.4
+    ports:
+      - 6884:6884
+    expose:
+      - 6884
+    volumes:
+      - ./model/data:/data
+    gpus: all
+    model_id: ./model/
+    networks:
+      chatbot_tornado:
+        ipv4_address: 172.38.0.5
 networks:
   chatbot_tornado:
     external: true
