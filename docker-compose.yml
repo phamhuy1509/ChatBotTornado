@@ -34,17 +34,23 @@ services:
       chatbot_tornado:
         ipv4_address: 172.38.0.4
   tgi:
-    image: ghcr.io/huggingface/text-generation-inference:1.4
+    image: ghcr.io/huggingface/text-generation-inference:2.0
     ports:
-      - 6884:6884
+      - 6884:80
     expose:
       - 6884
     volumes:
-      - ./model/data:/data
-    gpus: all
+      - /home/duchuy/data_tgi:/data
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    shm_size: 4g
     environment:
-      - MODEL_ID=./model/
-      - SHARDED=true
+      - MODEL_ID=TheBloke/deepseek-coder-6.7B-base-AWQ
       - QUANTIZE=awq
     networks:
       chatbot_tornado:
