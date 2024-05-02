@@ -8,7 +8,7 @@ def generate_bot_response(message):
 {message}
 ### Response:
 '''
-    client = AsyncInferenceClient(model="http://172.38.0.5/6884")
+    client = InferenceClient(model="http://172.38.0.5:6884")
     generation_text = client.text_generation(prompt=prompt_template,
                                              max_new_tokens=1024,
                                              do_sample=True,
@@ -18,8 +18,11 @@ def generate_bot_response(message):
                                              repetition_penalty=1.2)
     return generation_text
 class ChatHandler(BaseHandler):
-    async def post(self):
+    def post(self):
+        # try:
         request_data = json.loads(self.request.body)
         message = request_data['message']
-        bot_response = await generate_bot_response(message)
+        bot_response = generate_bot_response(message)
         self.write(json.dumps({"bot_response": bot_response}))
+        # except:
+        #     self.write(json.dumps({"bot_response": "Error chatbot is not available at the moment."}))
