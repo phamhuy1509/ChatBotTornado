@@ -1,21 +1,23 @@
 import json
-import time
-import random
 from base_handler import BaseHandler
+from huggingface_hub import AsyncInferenceClient
 
-def generate_bot_response(message):
-    responses = [
-        "Chào bạn, tôi có thể giúp gì được cho bạn",
-        "Rất vui khi được gặp bạn",
-        "for i in range(1, 101):\n\tif i % 2 == 0 and (i % 3 != 0 or i % 5 != 0):\n\t\tprint(i)",
-        "def square(n):\n\treturn n ** 2\nfor i in range(10):\n\tprint(i, square(i))",
-        "Dưới đây là một đoạn code python: <<python>> def square(n):\n\treturn n ** 2\nfor i in range(10):\n\tprint(i, square(i)) <</python>>"
-    ]
-    return random.choice(responses)
 class ChatHandler(BaseHandler):
-    def post(self):
+    async def post(self):
         request_data = json.loads(self.request.body)
         message = request_data['message']
-        bot_response = generate_bot_response(message)
-        time.sleep(2)
-        self.write(json.dumps({"bot_response": bot_response}))
+        prompt_template=f'''You are an AI programming assistant, utilizing the Deepseek Coder model, developed by Deepseek Company, and you only answer questions related to computer science. For politically sensitive questions, security and privacy issues, and other non-computer science questions, you will refuse to answer.
+### Instruction:
+{message}
+### Response:
+'''     
+        client = AsyncInferenceClient(model="http://172.38.0.5/6884")
+        async for token in await client.text_generation(prompt=prompt_template,
+                                                        max_new_tokens=1024,
+                                                        do_sample=True,
+                                                        temperature=0.2,
+                                                        top_k=50,
+                                                        top_p=0.3,
+                                                        repetition_penalty=1.2,
+                                                        stream=True):
+            self.write(json.dumps({"bot_response": token}))
