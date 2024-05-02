@@ -16,7 +16,7 @@ class ChatHandler(tornado.websocket.WebSocketHandler):
         response = await AsyncHTTPClient().fetch(request=request)
         bot_response = json.loads(response.body.decode())['bot_response']
         for client in self.clients:
-            client.write_message(bot_response)
+            await client.write_message(bot_response)
 
     def on_close(self):
         ChatHandler.clients.remove(self)
